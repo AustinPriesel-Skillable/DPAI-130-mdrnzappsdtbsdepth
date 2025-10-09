@@ -62,6 +62,7 @@ executing this lab
     incorrect.](./media/image7.png)
 
 7.  Select OK in the next screen.
+
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image8.png)
 
@@ -288,47 +289,47 @@ if the application runs on the IIS Server.
 
 15. In the **New Query** tab, enter the below query and **execute** it.
 
-```
+    ```
 
-USE \[DotNetAppSqlDb\]
+    USE \[DotNetAppSqlDb\]
 
-GO
+    GO
 
-SET ANSI_NULLS ON
+    SET ANSI_NULLS ON
 
-GO
+    GO
 
-SET QUOTED_IDENTIFIER ON
+    SET QUOTED_IDENTIFIER ON
 
-GO
+    GO
 
-CREATE TABLE \[dbo\].\[\_\_MigrationHistory\](
+    CREATE TABLE \[dbo\].\[\_\_MigrationHistory\](
 
-\[MigrationId\] \[nvarchar\](150) NOT NULL,
+    \[MigrationId\] \[nvarchar\](150) NOT NULL,
 
-\[ContextKey\] \[nvarchar\](300) NOT NULL,
+    \[ContextKey\] \[nvarchar\](300) NOT NULL,
 
-\[Model\] \[varbinary\](max) NOT NULL,
+    \[Model\] \[varbinary\](max) NOT NULL,
 
-\[ProductVersion\] \[nvarchar\](32) NOT NULL,
+    \[ProductVersion\] \[nvarchar\](32) NOT NULL,
 
-CONSTRAINT \[PK_dbo.\_\_MigrationHistory\] PRIMARY KEY CLUSTERED
+    CONSTRAINT \[PK_dbo.\_\_MigrationHistory\] PRIMARY KEY CLUSTERED
 
-(
+    (
 
-\[MigrationId\] ASC,
+    \[MigrationId\] ASC,
 
-\[ContextKey\] ASC
+    \[ContextKey\] ASC
 
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY =
-OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON,
-OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON \[PRIMARY\]
+    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY =
+    OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON,
+    OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON \[PRIMARY\]
 
-) ON \[PRIMARY\] TEXTIMAGE_ON \[PRIMARY\]
+    ) ON \[PRIMARY\] TEXTIMAGE_ON \[PRIMARY\]
 
-GO
+    GO
 
-```
+    ```
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image44.png)
@@ -391,14 +392,11 @@ GO
 
     ```
 
-    \<add name="MyDbConnection"
+    <add name="MyDbConnection"  
 
-         connectionString="Server=tcp:\<Server
-    Name\>,1433;Database=DotNetAppSqlDb;User
-    ID=tgsqlserveradmin;Password=sqlPwd981!2@98;Encrypt=True;TrustServerCertificate=False;Connection
-    Timeout=30;MultipleActiveResultSets=True;"
+         connectionString="Server=tcp:<Server Name>,1433;Database=DotNetAppSqlDb;User ID=tgsqlserveradmin;Password=sqlPwd981!2@98;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=True;"  
 
-         providerName="System.Data.SqlClient" /\>
+         providerName="System.Data.SqlClient" /> 
 
     ```
 
