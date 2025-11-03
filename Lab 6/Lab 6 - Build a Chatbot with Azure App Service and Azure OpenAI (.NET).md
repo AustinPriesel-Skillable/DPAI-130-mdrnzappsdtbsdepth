@@ -38,9 +38,9 @@ lab.
 
 2.  Sign-in using the given cloud slice credentials:
 
-    - Username - <+++@lab.CloudPortalCredential(User1).Username>+++
+    - Username - +++<@lab.CloudPortalCredential(User1).Username>+++
 
-    - Password - <+++@lab.CloudPortalCredential(User1).Password>+++
+    - Password - +++<@lab.CloudPortalCredential(LabUser).AccessToken>+++
 
     ![](./media/image2.png)
     ![](./media/image3.png)
