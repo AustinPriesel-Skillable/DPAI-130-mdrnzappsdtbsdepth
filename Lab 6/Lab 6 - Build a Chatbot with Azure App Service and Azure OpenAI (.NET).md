@@ -54,7 +54,7 @@ lab.
 
     ![](./media/image6.png)
 
-5.  Expand Settings from the left navigation menu. Click on **Resource
+5.  Expand **Settings** from the left navigation menu. Click on **Resource
     providers**, enter +++**Microsoft.Web**+++ and select three dots,
     and then click **Register**.
 
@@ -73,7 +73,7 @@ lab.
 In this task, you'll use GitHub Codespaces to create an Azure OpenAI
 resource with the Azure CLI.
 
-1.  Go to **GitHub Codespaces** +++https://github.com/codespaces+++ and
+1.  Open a new tab in the brwoser and naivagte to **GitHub Codespaces** +++https://github.com/codespaces+++ and
     sign in with your GitHub account.
 
     ![](./media/image9.png)
@@ -134,12 +134,11 @@ resource with the Azure CLI.
 
     +++export RESOURCE_GROUP="ResourceGroup1"+++
 
-    +++export
-    OPENAI_SERVICE_NAME="azure-openai-service-@lab.labinstanceid()"+++
+    +++export OPENAI_SERVICE_NAME="azure-openai-service-@lab.labinstanceid()"+++
 
     +++export APPSERVICE_NAME="nueralNest-xy@lab.labinstanceid()"+++
 
-    +++export LOCATION="eastus2"+++  
+    +++export LOCATION="@lab.CloudResourceGroup(ResourceGroup1).Location"+++  
 
     ![](./media/image20.png)
 
