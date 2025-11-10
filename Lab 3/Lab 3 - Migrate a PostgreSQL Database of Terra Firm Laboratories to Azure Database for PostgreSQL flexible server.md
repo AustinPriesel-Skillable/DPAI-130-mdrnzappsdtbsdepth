@@ -162,7 +162,7 @@ simulated on-premises APP virtual machine that was provisioned by the
 ARM Template deployment.
 
 1.  Select the **On-premises Workload VM** named similar
-    to **terrafirm**@**lab.LabInstance.Id-onprem-workload-vm**.
+    to **terrafirm@lab.LabInstance.Id-onprem-workload-vm**.
 
     ![](./media/image11.png)
 
@@ -177,7 +177,7 @@ ARM Template deployment.
 
 3.  Navigate back to the **ResourceGroup1**, then select
     the **On-premises APP VM** named similar
-    to **terrafirm**@**lab.LabInstance.Id-onprem-app-vm**.
+    to **terrafirm@lab.LabInstance.Id-onprem-app-vm**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image13.png)
@@ -225,26 +225,24 @@ ARM Template deployment.
     holding a script which will configure the web app on the application
     server.
 
-    +++sudo git clone
-    https://github.com/technofocus-pte/TechExcel-Migrate-Linux-workloads.git+++
+    +++sudo git clone https://github.com/technofocus-pte/TechExcel-Migrate-Linux-workloads.git+++
 
     ![](./media/image18.png)
 
 9.  You can now run the configuration script by using the following
     command:
 
-    +++sudo bash
-    TechExcel-Migrate-Linux-workloads/resources/deployment/onprem/APP-workload-install.sh+++
+    +++sudo bash TechExcel-Migrate-Linux-workloads/resources/deployment/onprem/APP-workload-install.sh+++
 
-    ![](./media/image19.png)You will get a status message of  “The script
-    was successful”.
+    ![](./media/image19.png)
+    
+    You will get a status message of  “The script as successful”.
 
     ![](./media/image20.png)
 
-10. Execute the following command to open the **orders.php** file for
+11. Execute the following command to open the **orders.php** file for
     the web application in a text editor. The application needs to be
-    configured to connect to the **Azure Database for PostgreSQL
-    Flexible Server** database.
+    configured to connect to the **Azure Database for PostgreSQL Flexible Server** database.
 
     +++sudo nano /var/www/html/orders.php+++
 
@@ -252,32 +250,30 @@ ARM Template deployment.
 
     ![](./media/image22.png)
 
-11. Use the **down arrow** key to scroll down in the order.php file
+12. Use the **down arrow** key to scroll down in the order.php file
     until you locate $host, $port, $dbname, $user, and $password.  
     
     ![](./media/image23.png)
 
-12. Check the host IP address and configure it to match the **Private IP
-    Address** of the **terrafirm**@lab.LabInstance.Id
-    **-onprem-workload-vm** instance. If the host IP is already correct,
-    skip to steps 13 and 14. And press **Ctrl+X** to exit the editor.
+13. Check the host IP address and configure it to match the **Private IP
+    Address** of the **terrafirm@lab.LabInstance.Id-onprem-workload-vm** instance. If the host IP is already correct, skip to steps 13 and 14. And press **Ctrl+X** to exit the editor.
 
     ![](./media/image24.png)
 
-13. If the host IP is not the same, then replace it with the **Private
+14. If the host IP is not the same, then replace it with the **Private
     IP Address** of the **terrafirm-onprem-workload-vm** instance that
     was copied in step 2. Then press **Ctrl+X**.
 
     ![](./media/image25.png)
 
-14. Press +++**Y**+++ to save the modified buffer and then press
+15. Press +++**Y**+++ to save the modified buffer and then press
     **Enter** to write the changes in the file.
 
     ![](./media/image26.png)
 
     ![](./media/image27.png)
 
-15. You are now exited from the orders.php file with the changes saved.
+16. You are now exited from the orders.php file with the changes saved.
 
     ![](./media/image28.png)
 
@@ -293,7 +289,7 @@ ARM Template deployment.
 
 1.  Navigate back to Azure Portal, open the ResourceGroup1, then select
     the **On-premises APP VM** named similar
-    to terrafirm@lab.LabInstance.Id-onprem-app-vm*.*
+    to **terrafirm@lab.LabInstance.Id-onprem-app-vm**.
 
     ![](./media/image29.png)
 
@@ -306,10 +302,10 @@ ARM Template deployment.
 3.  Open a new browser window, then navigate to the
     following **http:// URL** to access the simulated on-premises web
     application provisioned for this lab. Be sure to replace
-    the **\<ip-address\>** placeholder with the Public IP Address for
+    the **ip-address** placeholder with the Public IP Address for
     the VM. For example: http://172.206.126.43
 
-    +++http://\<ip-address\>+++
+    +++http://ip-address+++
 
     **Note:** You should get the Red Hat Enterprise Linux Test Page 
 
@@ -318,7 +314,7 @@ ARM Template deployment.
 4.  When the web page loads, enter the following at the end of the URL.
     For example: "http://172.206.126.43/orders.php"
 
-    +++http://\<ip-address\>/orders.php+++  
+    +++http://ip-address/orders.php+++  
     
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image32.png)
@@ -333,7 +329,7 @@ Azure Database for PostgreSQL will be used to perform the database
 migration from the PostgreSQL server on-premises to the Azure Database
 for PostgreSQL service.
 
-#### Objectives
+### Objectives
 
 After you complete this exercise, you will be able to:
 
@@ -364,12 +360,12 @@ target for the database migration.
     ![](./media/image34.png)
 
 3.  Click **Create** and then select **Azure Database for PostgreSQL
-    Flexible Server.**
+    Flexible Server**.
 
     ![A screenshot of a phone AI-generated content may be
     incorrect.](./media/image35.png)
 
-4.  On the **New Azure Database for PostgreSQL** **Flexible
+4.  On the **New Azure Database for PostgreSQL Flexible
     Server** pane, select the following values:
 
     1.  **Subscription:** Keep default
@@ -398,7 +394,7 @@ target for the database migration.
     choose the following:
 
     1.  **Compute tier:** General Purpose (2-64 vCores) - Balanced
-        configuration for most common workloads\*\*
+        configuration for most common workloads.
 
     2.  **Compute Size:** Standard_D4ds_v4 (4 vCores, 16GiB memory, 6400
         max iops)
