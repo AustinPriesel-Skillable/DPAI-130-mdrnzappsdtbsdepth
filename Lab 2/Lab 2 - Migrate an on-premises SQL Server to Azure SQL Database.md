@@ -33,6 +33,7 @@ create an On-prem Database in Azure SQL Virtual Machine.
     - Username - +++@lab.CloudPortalCredential(User1).Username+++
 
     - Password - +++@lab.CloudPortalCredential(User1).Password+++
+    - TAP Token - +++@lab.CloudPortalCredential(User1).AccessToken+++
  
     ![](./media/image1.png)
     ![](./media/image2.png)
