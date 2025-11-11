@@ -145,7 +145,7 @@ if the application runs on the IIS Server.
 
     - Username - +++@lab.CloudPortalCredential(User1).Username+++
 
-    - Password - +++@lab.CloudPortalCredential(User1).Password+++
+    - TAP Token - +++@lab.CloudPortalCredential(User1).AccessToken+++
 
     ![](./media/image20.png)
 
