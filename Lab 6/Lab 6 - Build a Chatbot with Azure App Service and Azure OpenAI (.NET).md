@@ -1,4 +1,4 @@
-### Lab 6 - Build a Q&A chatbot with Azure App Service and Azure OpenAI chat completion model
+# Lab 6 - Build a Q&A chatbot with Azure App Service and Azure OpenAI chat completion model
 
 ### Time Duration: 50 mins
 
@@ -28,7 +28,7 @@ In this tutorial, you learn how to:
   Github account then you can create from
   [here](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home).
 
-# Task 1: Register Resource provider
+## Task 1: Register Resource provider
 
 In this task, we will register all the resource providers used in this
 lab.
@@ -40,7 +40,7 @@ lab.
 
     - Username - +++@lab.CloudPortalCredential(User1).Username+++
 
-    - Password - +++@lab.CloudPortalCredential(User1).AccessToken+++
+    - TAP Token - +++@lab.CloudPortalCredential(User1).AccessToken+++
 
     ![](./media/image2.png)
     ![](./media/image3.png)
@@ -134,11 +134,11 @@ resource with the Azure CLI.
 
     +++export RESOURCE_GROUP="ResourceGroup1"+++
 
-    +++export OPENAI_SERVICE_NAME="azure-openai-service-@lab.labinstanceid()"+++
+    +++export OPENAI_SERVICE_NAME="azure-openai-service-@lab.LabInstance.Id"+++
 
-    +++export APPSERVICE_NAME="nueralNest-xy@lab.labinstanceid()"+++
+    +++export APPSERVICE_NAME="nueralNest-xy@lab.LabInstance.Id"+++
 
-    +++export LOCATION="@lab.CloudResourceGroup(ResourceGroup1).Location"+++  
+    +++export LOCATION="eastus2"+++  
 
     ![](./media/image20.png)
 
@@ -312,7 +312,7 @@ and set up a service connection to Azure OpenAI using managed identity.
     running command. Now, deploy your app to Azure App Service using the
     Azure CLI command az webapp up. This command creates a new web app
     and deploys your code to it:
-
+    +++export LOCATION="@lab.CloudResourceGroup(ResourceGroup1).Location"+++
     ```
     az webapp up \
     --resource-group $RESOURCE_GROUP \
@@ -333,7 +333,7 @@ and set up a service connection to Azure OpenAI using managed identity.
     failed) that are not related to App Service creation. If a timeout
     error occurs, simply re-run the command.
 
-2.  After the app is deployed, create a service connection between your
+3.  After the app is deployed, create a service connection between your
     web app and the Azure OpenAI resource using managed identity:
 
     ```
@@ -361,11 +361,11 @@ and set up a service connection to Azure OpenAI using managed identity.
     Your app is now deployed and connected to Azure OpenAI with a managed
     identity.
 
-3.  Navigate to the **Azure portal** and sign in to your account.
+4.  Navigate to the **Azure portal** and sign in to your account.
 
     +++https://portal.azure.com/+++
 
-4.  Navigate to **Resource Groups**, open your resource group that is
+5.  Navigate to **Resource Groups**, open your resource group that is
     **ResourceGroup1**, and select your app that is
     **nueralNest-xy@lab.labinstanceid().**
 
@@ -374,7 +374,7 @@ and set up a service connection to Azure OpenAI using managed identity.
     ![A screenshot of a computer
     AI-generated content may be incorrect.](./media/image35.png)
 
-5.  On the Overview page of your app, click the **URL** to open the
+6.  On the Overview page of your app, click the **URL** to open the
     deployed web app in a new browser window.
 
     ![A screenshot of a computer AI-generated content may be
@@ -383,7 +383,7 @@ and set up a service connection to Azure OpenAI using managed identity.
     ![A screenshot of a chat AI-generated content may be
     incorrect.](./media/image37.png)
 
-6.  Type the following prompt in the textbox and select **Send**, and
+7.  Type the following prompt in the textbox and select **Send**, and
     give the app a few seconds to reply with a message from Azure
     OpenAI.
 
