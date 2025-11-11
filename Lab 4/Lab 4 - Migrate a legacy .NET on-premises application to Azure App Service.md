@@ -118,8 +118,7 @@ the Azure App Service Migration Assistant.
 
 10.  Once the **Publish profile** creation is successful, select
     **Close**.
-
-    ![A screenshot of a computer AI-generated content may be
+      ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image17.png)
 
 11. Back in the **Publish** screen, select **Publish**.
