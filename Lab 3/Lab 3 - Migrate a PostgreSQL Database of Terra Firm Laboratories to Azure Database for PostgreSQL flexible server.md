@@ -105,18 +105,18 @@ on-premises environment for Terra Firm Laboratories.
     ![](./media/image4.png)
     ![](./media/image5.png)
 
-2.  Open a new tab in the browser, and navigate to the following link to
+3.  Open a new tab in the browser, and navigate to the following link to
     get the ARM template: 
 
     +++https://github.com/technofocus-pte/MigrateLinuxworkloads/tree/main/resources/deployment+++
 
-3.  Select **Deploy to Azure**. This will open a new browser tab to the
+4.  Select **Deploy to Azure**. This will open a new browser tab to the
     Azure Portal for custom deployments.
     
     ![The GitHub page with Deploy to
     Azure button highlighted.](./media/image6.png)
 
-4.  Fill in the required ARM template parameters.
+5.  Fill in the required ARM template parameters.
 
     - **Subscription:** Use the default one
 
@@ -133,11 +133,11 @@ on-premises environment for Terra Firm Laboratories.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image7.png)
 
-5.  Click on the **Create** button to start deployment.
+6.  Click on the **Create** button to start deployment.
 
     ![](./media/image8.png)
 
-6.  The deployment is now underway. On average, this process can take
+7.  The deployment is now underway. On average, this process can take
     10-20 minutes to complete.
 
     ![A screenshot of a computer AI-generated content may be
@@ -149,7 +149,7 @@ on-premises environment for Terra Firm Laboratories.
     try the ARM template again. Or review the failures and adjust for errors
     as appropriate.
 
-7.  Once the ARM template is deployed successfully, the status will
+8.  Once the ARM template is deployed successfully, the status will
     change to complete. Click on **Go to resource group** to open the
     resource group.
 
