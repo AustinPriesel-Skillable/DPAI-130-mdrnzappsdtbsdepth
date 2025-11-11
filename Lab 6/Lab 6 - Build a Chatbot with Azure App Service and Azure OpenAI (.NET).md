@@ -68,7 +68,7 @@ lab.
 
     - +++**Microsoft.ServiceLinker**+++
 
-# Task 2: Create an Azure OpenAI resource
+## Task 2: Create an Azure OpenAI resource
 
 In this task, you'll use GitHub Codespaces to create an Azure OpenAI
 resource with the Azure CLI.
@@ -160,7 +160,7 @@ resource with the Azure CLI.
 Now that you have an Azure OpenAI resource, you'll create a web
 application to interact with it.
 
-# Task 3: Create and set up a Blazor web app
+## Task 3: Create and set up a Blazor web app
 
 In this task, you'll create a new Blazor web application using the .NET
 CLI.
@@ -303,7 +303,7 @@ managed identity. The same DefaultAzureCredential in your code can
 detect the managed identity and use it for authentication. No extra code
 is needed.
 
-# Task 4: Deploy to Azure App Service and configure OpenAI connection
+## Task 4: Deploy to Azure App Service and configure OpenAI connection
 
 Now that your app works locally, let's deploy it to Azure App Service
 and set up a service connection to Azure OpenAI using managed identity.
@@ -391,7 +391,7 @@ and set up a service connection to Azure OpenAI using managed identity.
 
     ![](./media/image38.png)
 
-# Summary:
+## Summary:
 
 In this lab, you provision Azure resources, including an Azure OpenAI
 instance with the gpt-4o-mini model. You build a Blazor web app that
