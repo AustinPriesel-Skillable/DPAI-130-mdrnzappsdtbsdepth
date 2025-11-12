@@ -64,7 +64,6 @@ credentials. If you do not have, please create one from here
     - **+++Microsoft.ManagedIdentity+++**
     - **+++Microsoft.Management+++**
     - **+++Microsoft.operationalinsights+++**
-    - **+++Microsoft.AlertsManagement+++**
 
 ### Task 2: Copy the existing resource group name
 
@@ -87,34 +86,30 @@ credentials. If you do not have, please create one from here
 
 1.  Open your browser, navigate to the address bar, type or paste the
     following
-    URL: +++https://github.com/technofocus-pte/ragpostgresopenaipython.git+++ tab
-    opens and ask you to open in Visual studio code. Select **Open
-    Visual Studio Code.**
-
-      ![](./media/image13.jpeg)
+    URL: +++https://github.com/technofocus-pte/ragpostgresopenaipython.git+++ and sign-in using your GitHub credentials.
+    ![](./media/image13.jpeg)
 
 2.  Click on **fork** to fork the repo. Give unique name to the repo and
     click on **Create repo** button.
-
       ![](./media/aa3.png)
-      ![](./media/iaa4.png)
+      ![](./media/image55.png)
 
 3.  Click on **Code -> Codespaces -> Codespaces+**
-
-       ![](./media/aa5.png)
+    ![](./media/aa5.png)
 
 4.  Wait for the Codespaces environment to setup .It takes few minutes
     to setup completely
-
-      ![](./media/image17.png)
-      ![](./media/image18.png)
+    ![](./media/image56.png)
+    ![](./media/image57.png)
 
 ### Task 4: Provision Services and deploy application to Azure
 
 1.  In the **infra** folder, select the **main.bicep** file to open it.
+    ![](./media/image58.png)
 2.  Navigate to the **C:\LabFiles\Deploying chat app on Azure Container Apps with PostgreSQL Flexible Server** directory, select the **main.bicep** file, and open it.
-3.  Copy the code and replace the contents of the main.bicep file in the Codespace.
-4.  Save the main.bicep file to apply the changes.
+3.  Copy the code and replace the contents of the main.bicep file in the Codespace. 
+    ![](./media/image59.png)
+4.  The file will save automaticaly in the codesapce.
 5.  Run the following command on the Terminal. It generates the code to
     copy. Copy the code and press Enter.
 
