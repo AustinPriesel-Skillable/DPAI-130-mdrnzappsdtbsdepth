@@ -1,4 +1,4 @@
-#Lab 01: Build a fitness app with GitHub Copilot agent mode
+# Lab 01: Build a fitness app with GitHub Copilot agent mode
 
 In this lab, participants will set up a preconfigured development
 environment using GitHub Codespaces to build a full-stack OctoFit
@@ -310,6 +310,7 @@ copilot for help starting a branch so we can do some customizing.
     1. Update `settings.py` for MongoDB connection and CORS. 
     2. Update `models.py`, `serializers.py`, `urls.py`, `views.py`, `tests.py`, and `admin.py` to support users, teams, activities, leaderboard, and workouts collections. 
     3. Ensure `/` points to the api and `api_root` is present in
+    
     ```
 
     ![A screenshot of a computer Description automatically
@@ -390,7 +391,9 @@ copilot for help starting a branch so we can do some customizing.
 
     1. Update `urls.py` to replace the return for the REST API URL endpoints with the environment variable $CODESPACE_NAME https://$CODESPACE_NAME-8000.app.github.dev for Django and avoid certificate HTTPS issues. 
 
-    2. Make sure the Django backend works on your codespace URL and localhost (i.e., the value of `$CODESPACE_NAME`) by updating `ALLOW
+    2. Make sure the Django backend works on your codespace URL and localhost (i.e., the value of `$CODESPACE_NAME`) by updating `ALLOWED_HOSTS` in `settings.py`. 
+
+    3. Test the API endpoints using curl command. 
     ```
 
     ![A screenshot of a computer Description automatically
