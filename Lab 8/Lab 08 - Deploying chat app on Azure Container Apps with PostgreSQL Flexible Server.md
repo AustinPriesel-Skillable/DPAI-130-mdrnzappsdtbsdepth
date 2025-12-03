@@ -86,11 +86,12 @@ credentials. If you do not have, please create one from here
 
 1.  Open your browser, navigate to the address bar, type or paste the
     following
-    URL: +++https://github.com/technofocus-pte/ragpostgresopenaipython.git+++ and sign-in using your GitHub credentials.
+    URL: +++https://github.com/technofocus-pte/ragpostgresopenaipython2+++ and sign-in using your GitHub credentials.
     ![](./media/image13.jpeg)
 
 2.  Click on **fork** to fork the repo. Give unique name to the repo and
-    click on **Create repo** button.
+    click on **Create repo** button. 
+
       ![](./media/aa3.png)
       ![](./media/image55.png)
 
@@ -104,29 +105,23 @@ credentials. If you do not have, please create one from here
 
 ### Task 4: Provision Services and deploy application to Azure
 
-1.  In the **infra** folder, select the **main.bicep** file to open it.
-    ![](./media/image58.png)
-2.  Navigate to the **C:\LabFiles\Deploying chat app on Azure Container Apps with PostgreSQL Flexible Server** directory, select the **main.bicep** file, and open it.
-3.  Copy the code and replace the contents of the main.bicep file in the Codespace. 
-    ![](./media/image59.png)
-4.  The file will save automaticaly in the codesapce.
-5.  Run the following command on the Terminal. It generates the code to
+1.  Run the following command on the Terminal. It generates the code to
     copy. Copy the code and press Enter.
 
       +++azd auth login+++
 
       ![](./media/image19.png)
 
-6.  Default browser opens to enter the generated code to verify. Enter
+2.  Default browser opens to enter the generated code to verify. Enter
     the code and click **Next**.
 
       ![](./media/image20.png)
 
-7.  Sign in with your Azure credentials.
+3.  Sign in with your Azure credentials.
 
       ![](./media/image21.png)
 
-8.  To create an environment for Azure resources, run the following
+4.  To create an environment for Azure resources, run the following
     Azure Developer CLI command.It asks you to enter environment name
     .Enter any name of your choice and press enter (eg :+++ragpgpy@lab.LabInstance.Id+++)
 
@@ -136,57 +131,57 @@ credentials. If you do not have, please create one from here
       +++azd env new+++
 
       ![](./media/image22.png)
-9. Run below command to set resource group
+5. Run below command to set resource group
 
    +++azd env set AZURE_RESOURCE_GROUP ResourceGroup1+++
      ![](./media/image29.png)
 
-10.  Run the following Azure Developer CLI command to provision the Azure
+6.  Run the following Azure Developer CLI command to provision the Azure
     resources and deploy the code.
 
       +++azd up+++
 
     
-11.  When prompted, select a **subscription** to create the resources and
+7.  When prompted, select a **subscription** to create the resources and
     select the region closest to your location; in this lab, we have
     chosen the **@lab.CloudResourceGroup(ResourceGroup1).Location** region.
 
       ![](./media/image24.png)
 
-12.  When prompted, **enter a value for the 'openAILocation'
+8.  When prompted, **enter a value for the 'openAILocation'
     infrastructure parameter** select the region closest to your
     location; in this lab, we have chosen the **North Central
     US** region
 
       ![](./media/image26.png)
 
-13.  Provisioning resource will take around 15-16 min. Click **Yes** if
+9.  Provisioning resource will take around 15-16 min. Click **Yes** if
     prompted.
 
        ![](./media/image27.png)
 
-14. Wait for the template to provision all resource successfully.
+10. Wait for the template to provision all resource successfully.
 
      ![](./media/image28.png)
 
    
-15. Wait for the deployment to complete. Deployment takes 5 mins
+11. Wait for the deployment to complete. Deployment takes 5 mins
 
       ![](./media/image31.png)
 
-16. Click on the deployed web app endpoint link.
+12. Click on the deployed web app endpoint link.
 
      ![](./media/image32.png)
 
-17. Click on **Open**. It opens new tab with app
+13. Click on **Open**. It opens new tab with app
 
      ![](./media/image33.png)
 
-18. The app opens.
+14. The app opens.
 
       ![](./media/image34.png)
 
-    >[!Alert] Important: If you face any issue launching the app, please redeploy it by following step 12, i.e azd deploy
+    Important: If you face any issue launching the app, please redeploy it by following step 12, i.e azd deploy
 
 ### Task 5: Use chat app to get answers from files
 
