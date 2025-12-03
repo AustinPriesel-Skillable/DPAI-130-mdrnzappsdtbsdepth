@@ -1,4 +1,4 @@
-### Lab 3 - Migrate on-premise PostgreSQL to Azure Database for PostgreSQL flexible server
+# Lab 3 - Migrate on-premise PostgreSQL to Azure Database for PostgreSQL flexible server
 
 ### Time Duration – 60 mins
 
