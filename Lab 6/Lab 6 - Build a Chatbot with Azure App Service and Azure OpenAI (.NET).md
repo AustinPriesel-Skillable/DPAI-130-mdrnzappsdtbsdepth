@@ -138,7 +138,7 @@ resource with the Azure CLI.
 
     +++export APPSERVICE_NAME="nueralNest-xy@lab.LabInstance.Id"+++
 
-    +++export LOCATION="eastus2"+++  
+    +++export LOCATION="centralcanada"+++  
 
     ![](./media/image20.png)
 
@@ -276,7 +276,7 @@ CLI.
 7.  Run the app again by adding **AZURE_OPENAI_ENDPOINT** with the value
     saved in the previous step.
 
-    +++AZURE_OPENAI_ENDPOINT= "replace-with-output-from-previous-cli-command" dotnet run+++
+    +++AZURE_OPENAI_ENDPOINT="replace-with-output-from-previous-cli-command" dotnet run+++
 
     ![](./media/image28.png)
 
