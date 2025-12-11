@@ -263,11 +263,16 @@ CLI.
     **OpenAI endpoint** and save it in a notepad for later use:
 
     ```
+    az cognitiveservices account show \
+    --name $OPENAI_SERVICE_NAME \
+    --resource-group $RESOURCE_GROUP \
+    --query properties.endpoint \
+    --output tsv
     ```
 
     ![](./media/image27.png)
 
-7.  Run the app again by adding **AZURE_OPENAI_ENDPOINT **with the value
+7.  Run the app again by adding **AZURE_OPENAI_ENDPOINT** with the value
     saved in the previous step.
     +++AZURE_OPENAI_ENDPOINT="replace-with-output-from-previous-cli-command" dotnet run+++
 
