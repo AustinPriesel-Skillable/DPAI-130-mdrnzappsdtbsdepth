@@ -345,22 +345,18 @@ and set up a service connection to Azure OpenAI using managed identity.
 
     This command creates a connection between your web app and the Azure
     OpenAI resource by:
-
-        - Generating a system-assigned managed identity for the web app.
-
-        - Adding the Cognitive Services OpenAI Contributor role to the managed
-        identity for the Azure OpenAI resource.
-
-        - Adding the AZURE_OPENAI_ENDPOINT app setting to your web app.
+    - Generating a system-assigned managed identity for the web app.
+    - Adding the Cognitive Services OpenAI Contributor role to the managed identity for the Azure OpenAI resource.
+    - Adding the AZURE_OPENAI_ENDPOINT app setting to your web app.
 
     Your app is now deployed and connected to Azure OpenAI with a managed
     identity.
 
-3.  Navigate to the **Azure portal** and sign in to your account.
+4.  Navigate to the **Azure portal** and sign in to your account.
 
     +++https://portal.azure.com/+++
 
-4.  Navigate to **Resource Groups**, open your resource group that is
+5.  Navigate to **Resource Groups**, open your resource group that is
     **ResourceGroup1**, and select your app that is
     **nueralNest-xy@lab.labinstanceid().**
 
@@ -370,7 +366,7 @@ and set up a service connection to Azure OpenAI using managed identity.
     ![A screenshot of a computer
     AI-generated content may be incorrect.](./media/image35.png)
 
-5.  On the Overview page of your app, click the **URL** to open the
+6.  On the Overview page of your app, click the **URL** to open the
     deployed web app in a new browser window.
 
     ![A screenshot of a computer AI-generated content may be
@@ -379,7 +375,7 @@ and set up a service connection to Azure OpenAI using managed identity.
     ![A screenshot of a chat AI-generated content may be
     incorrect.](./media/image37.png)
 
-6.  Type the following prompt in the textbox and select **Send**, and
+7.  Type the following prompt in the textbox and select **Send**, and
     give the app a few seconds to reply with a message from Azure
     OpenAI.
 
