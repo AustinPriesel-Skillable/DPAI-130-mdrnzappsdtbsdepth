@@ -680,30 +680,25 @@ and create a search index that the application will use:
 16. Copy the **Objects name prefix** value in Notepad for future use, as
     it is your search index name. Now, click **Create** to start the
     indexing process.
-
-    ![](./media/image73.png)
-
-    ![](./media/image74.png)
-
-    ![](./media/image75.png)![A
+    ![A
     screenshot of a computer AI-generated content may be
     incorrect.](./media/image76.png)
 
-17. Wait for the indexing process to complete. This might take a few
+18. Wait for the indexing process to complete. This might take a few
     minutes, depending on the size and number of your documents. Once
     the process is complete, click **Close**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image77.png)
 
-18. Again, open the resource group and select Azure OpenAI service.
+19. Again, open the resource group and select Azure OpenAI service.
 
     ![](./media/image73.png)
 
     ![A screenshot of a computer AI-generated
     content may be incorrect.](./media/image78.png)
 
-19. Select the **Endpoint** and then copy the value of the endpoint in
+20. Select the **Endpoint** and then copy the value of the endpoint in
     Notepad for future use.
 
     ![](./media/image79.png)
@@ -714,7 +709,7 @@ and create a search index that the application will use:
     ![A screenshot of a
     computer AI-generated content may be incorrect.](./media/image81.png)
 
-20. Navigate to Codespace terminal, set the search index name as an AZD
+21. Navigate to Codespace terminal, set the search index name as an AZD
     environment variable:
 
     +++azd env set SEARCH_INDEX_NAME \<your-search-index-name\>+++
