@@ -38,34 +38,37 @@ lab.
 
 2.  Sign-in using the given cloud slice credentials:
 
-- Username - <+++@lab.CloudPortalCredential(User1).Username>+++
+    - Username - +++@lab.CloudPortalCredential(User1).Username+++
 
-- TAP Token - [+++
-  [@lab.CloudPortalCredential](mailto:+++@lab.CloudPortalCredential)(User1).AccessToken](mailto:+++@lab.CloudPortalCredential(User1).Password)+++
+    - TAP Token - +++@lab.CloudPortalCredential(User1).AccessToken+++
 
-![](./media/image2.png)![](./media/image3.png)![](./media/image4.png)
+    ![](./media/image2.png)
+
+    ![](./media/image3.png)
+
+    ![](./media/image4.png)
 
 3.  Click on the **Subscriptions** tile.
 
-![](./media/image5.png)
+    ![](./media/image5.png)
 
 4.  Click on the **subscription name**.
 
-![](./media/image6.png)
+    ![](./media/image6.png)
 
 5.  Expand Settings from the left navigation menu. Click on **Resource
     providers**, enter +++**Microsoft.Web**+++ and select three dots,
     and then click **Register**.
 
-![](./media/image7.png)
+    ![](./media/image7.png)
 
-![](./media/image8.png)
+    ![](./media/image8.png)
 
 6.  Similarly register the following:
 
-- +++**Microsoft.CognitiveServices**+++
+    - +++**Microsoft.CognitiveServices**+++
 
-- +++**Microsoft.ServiceLinker**+++
+    - +++**Microsoft.ServiceLinker**+++
 
 ## Task 2: Create an Azure OpenAI resource
 
@@ -75,128 +78,88 @@ resource with the Azure CLI.
 1.  Go to **GitHub Codespaces** +++https://github.com/codespaces+++ and
     sign in with your GitHub account.
 
-> ![](./media/image9.png)
+    ![](./media/image9.png)
 
 2.  Find the **Blank** template on GitHub and select **Use this
     template** to create a new blank Codespace.
 
-> ![](./media/image10.png)
+    ![](./media/image10.png)
 
 3.  Wait for the Codespaces environment to setup. It takes few minutes
     to setup completely.
 
-> ![](./media/image11.png)
+    ![](./media/image11.png)
 
 4.  In the Codespace terminal, run the following command to install the
     Azure CLI:
 
-> +++curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash+++
->
-> ![](./media/image12.png)
+    +++curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash+++
+
+    ![](./media/image12.png)
 
 5.  Run the following command to sign in to your Azure account. Copy the
     generated code, then open the provided URL and paste the code when
     prompted.
 
-> +++az login+++
->
-> ![](./media/image13.png)
+    +++az login+++
+
+    ![](./media/image13.png)
 
 6.  Enter the given authentication code and click on the **Next**
     button.  
+
     ![](./media/image14.png)
 
-> **Note:** The authentication code is always different each time we log
-> in.
+    **Note:** The authentication code is always different each time we login.
 
 7.  Select your Azure account.  
+
     ![](./media/image15.png)
 
 8.  Click on the **Continue** button, and your Azure account is logged
     in successfully.
 
-> ![](./media/image16.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image17.png)
+    ![](./media/image16.png)
+
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image17.png)
 
 9.  Navigate back to the Codespace terminal and press +++**1**+++ to
     select your subscription and tenant.  
+    
     ![](./media/image18.png)
 
-> ![](./media/image19.png)
+    ![](./media/image19.png)
 
 10. Set environment variables for your **resource group name**, **Azure
     OpenAI service name**, and **location**:
 
-> +++export RESOURCE_GROUP="ResourceGroup1"+++
->
-> +++export
-> OPENAI_SERVICE_NAME="azure-openai-service-@lab.labinstanceid()"+++
->
-> +++export APPSERVICE_NAME="nueralNest-xy@lab.labinstanceid()"+++
->
-> +++export LOCATION="centralcanada"+++  
-> ![](./media/image20.png)
+    +++export RESOURCE_GROUP="ResourceGroup1"+++
+
+    +++export OPENAI_SERVICE_NAME="azure-openai-service-@lab.labinstanceid()"+++
+
+    +++export APPSERVICE_NAME="nueralNest-xy@lab.labinstanceid()"+++
+
+    +++export LOCATION="centralcanada"+++  
+
+    ![](./media/image20.png)
 
 11. Create an Azure OpenAI resource with a custom domain, then add a
     gpt-4o-mini model in the existing resource group:
 
-> \`\`\`
->
-> \# Azure OpenAI resource
->
-> az cognitiveservices account create \\
->
-> --name $OPENAI_SERVICE_NAME \\
->
-> --resource-group $RESOURCE_GROUP \\
->
-> --location $LOCATION \\
->
-> --custom-domain $OPENAI_SERVICE_NAME \\
->
-> --kind OpenAI \\
->
-> --sku s0
->
-> \# gpt-4o-mini model
->
-> az cognitiveservices account deployment create \\
->
-> --name $OPENAI_SERVICE_NAME \\
->
-> --resource-group $RESOURCE_GROUP \\
->
-> --deployment-name gpt-4o-mini \\
->
-> --model-name gpt-4o-mini \\
->
-> --model-version 2024-07-18 \\
->
-> --model-format OpenAI \\
->
-> --sku-name Standard \\
->
-> --sku-capacity 1
->
-> \# Cognitive Services OpenAI User role that lets the signed-in Azure
-> user read models from Azure OpenAI
->
-> az role assignment create \\
->
-> --assignee $(az ad signed-in-user show --query id -o tsv) \\
->
-> --role "Cognitive Services OpenAI User" \\
->
-> --scope /subscriptions/$(az account show --query id -o
-> tsv)/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.CognitiveServices/accounts/$OPENAI_SERVICE_NAME
->
-> \`\`\`  
-> ![](./media/image21.png)
+    ```
+    # Azure OpenAI resource
+    az cognitiveservices account create --name $OPENAI_SERVICE_NAME --resource-group $RESOURCE_GROUP --location $LOCATION --custom-domain $OPENAI_SERVICE_NAME --kind OpenAI --sku s0
+    # gpt-4o-mini model
+    az cognitiveservices account deployment create --name $OPENAI_SERVICE_NAME --resource-group $RESOURCE_GROUP --deployment-name gpt-4o-mini --model-name gpt-4o-mini --model-version 2024-07-18 --model-format OpenAI --sku-name Standard --sku-capacity 1
+    # Cognitive Services OpenAI User role that lets the signed in Azure user to read models from Azure OpenAI
+    az role assignment create --assignee $(az ad signed-in-user show --query id -o tsv) --role "Cognitive Services OpenAI User" --scope /subscriptions/$(az account show --query id -o tsv)/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.CognitiveServices/accounts/$OPENAI_SERVICE_NAME
+    ```
 
-Now that you have an Azure OpenAI resource, you'll create a web
-application to interact with it.
+    ![](./media/image21.png)
+
+    Now that you have an Azure OpenAI resource, you'll create a web
+    application to interact with it.
 
 ## Task 3: Create and set up a Blazor web app
 
@@ -206,22 +169,22 @@ CLI.
 1.  In your Codespace terminal, create a new Blazor app and try running
     it for the first time.
 
-> \`\`\`
->
-> dotnet new blazor -o .
->
-> dotnet run
->
-> \`\`\`
->
-> These commands will add the project directories on the left-hand side.
-> ![](./media/image22.png)
+    ```
+    dotnet new blazor -o .
+    dotnet run
+    ```
+    These commands will add the project directories on the left-hand side.
+
+    ![](./media/image22.png)
 
 2.  While running the above commands, you will get a notification in
     GitHub Codespaces indicating that the app is available at a specific
     port. Select **Open in browser** to launch the app in a new browser
     tab.  
-    ![](./media/image23.png)![A screenshot of a computer AI-generated
+
+    ![](./media/image23.png)
+    
+    ![A screenshot of a computer AI-generated
     content may be incorrect.](./media/image24.png)
 
 3.  Go back in the Codespace terminal, stop the app with **Ctrl+C**.
@@ -229,160 +192,101 @@ CLI.
 4.  Install the required **NuGet packages** for working with Azure
     OpenAI:
 
-\`\`\`
+    ```
+    dotnet add package Azure.AI.OpenAI
+    dotnet add package Azure.Identity
+    ````
 
-dotnet add package Azure.AI.OpenAI
-
-dotnet add package Azure.Identity
-
-\`\`\`
-
-![](./media/image25.png)
+    ![](./media/image25.png)
 
 5.  Open **Components/Pages/Home.razor** and replace its content with
     the following code, for a simple chat completion stream call with
     Azure OpenAI:
 
-> \`\`\`
->
-> @page "/"
->
-> @rendermode InteractiveServer
->
-> @using Azure.AI.OpenAI
->
-> @using Azure.Identity
->
-> @using OpenAI.Chat
->
-> @inject Microsoft.Extensions.Configuration.IConfiguration \_config
->
-> \<h3\>Azure OpenAI Chat\</h3\>
->
-> \<div class="mb-3 d-flex align-items-center" style="margin:auto;"\>
->
-> \<input class="form-control me-2" @bind="userMessage"
-> placeholder="Type your message..." /\>
->
-> \<button class="btn btn-primary"
-> @onclick="SendMessage"\>Send\</button\>
->
-> \</div\>
->
-> \<div class="card p-3" style="margin:auto;"\>
->
-> @if (!string.IsNullOrEmpty(aiResponse))
->
-> {
->
-> \<div class="alert alert-info mt-3 mb-0"\>@aiResponse\</div\>
->
-> }
->
-> \</div\>
->
-> @code {
->
-> private string? userMessage;
->
-> private string? aiResponse;
->
-> private async Task SendMessage()
->
-> {
->
-> if (string.IsNullOrWhiteSpace(userMessage)) return;
->
-> // Initialize the Azure OpenAI client
->
-> var endpoint = new Uri(\_config\["AZURE_OPENAI_ENDPOINT"\]!);
->
-> var client = new AzureOpenAIClient(endpoint, new
-> DefaultAzureCredential());
->
-> var chatClient = client.GetChatClient("gpt-4o-mini");
->
-> aiResponse = string.Empty;
->
-> StateHasChanged();
->
-> // Create a chat completion streaming request
->
-> var chatUpdates = chatClient.CompleteChatStreamingAsync(
->
-> \[
->
-> new UserChatMessage(userMessage)
->
-> \]);
->
-> await foreach(var chatUpdate in chatUpdates)
->
-> {
->
-> // Update the UI with the streaming response
->
-> foreach(var contentPart in chatUpdate.ContentUpdate)
->
-> {
->
-> aiResponse += contentPart.Text;
->
-> StateHasChanged();
->
-> }
->
-> }
->
-> }
->
-> }
->
-> \`\`\`
+    ```
+    @page "/"
+    @rendermode InteractiveServer
+    @using Azure.AI.OpenAI
+    @using Azure.Identity
+    @using OpenAI.Chat
+    @inject Microsoft.Extensions.Configuration.IConfiguration _config
 
-![](./media/image26.png)
+    <h3>Azure OpenAI Chat</h3>
+    <div class="mb-3 d-flex align-items-center" style="margin:auto;">
+        <input class="form-control me-2" @bind="userMessage" placeholder="Type your message..." />
+        <button class="btn btn-primary" @onclick="SendMessage">Send</button>
+    </div>
+    <div class="card p-3" style="margin:auto;">
+        @if (!string.IsNullOrEmpty(aiResponse))
+        {
+            <div class="alert alert-info mt-3 mb-0">@aiResponse</div>
+        }
+    </div>
+
+    @code {
+        private string? userMessage;
+        private string? aiResponse;
+
+        private async Task SendMessage()
+        {
+            if (string.IsNullOrWhiteSpace(userMessage)) return;
+
+            // Initialize the Azure OpenAI client
+            var endpoint = new Uri(_config["AZURE_OPENAI_ENDPOINT"]!);
+            var client = new AzureOpenAIClient(endpoint, new DefaultAzureCredential());
+            var chatClient = client.GetChatClient("gpt-4o-mini");
+
+            aiResponse = string.Empty;
+            StateHasChanged();
+
+            // Create a chat completion streaming request
+            var chatUpdates = chatClient.CompleteChatStreamingAsync(
+                [
+                    new UserChatMessage(userMessage)
+                ]);
+
+                await foreach(var chatUpdate in chatUpdates)
+                {
+                    // Update the UI with the streaming response
+                    foreach(var contentPart in chatUpdate.ContentUpdate)
+                {
+                    aiResponse += contentPart.Text;
+                    StateHasChanged();
+                }
+            }
+        }
+    }
+    ```
+    ![](./media/image26.png)
 
 6.  In the terminal, run the following commands to retrieve your
     **OpenAI endpoint** and save it in a notepad for later use:
 
-> \`\`\`
->
-> az cognitiveservices account show \\
->
-> --name $OPENAI_SERVICE_NAME \\
->
-> --resource-group $RESOURCE_GROUP \\
->
-> --query properties.endpoint \\
->
-> --output tsv
->
-> \`\`\`
->
-> ![](./media/image27.png)
+    ```
+    ```
+
+    ![](./media/image27.png)
 
 7.  Run the app again by adding **AZURE_OPENAI_ENDPOINT **with the value
     saved in the previous step.
+    +++AZURE_OPENAI_ENDPOINT="replace-with-output-from-previous-cli-command" dotnet run+++
 
-> +++AZURE_OPENAI_ENDPOINT="replace-with-output-from-previous-cli-command"
-> dotnet run+++
->
-> ![](./media/image28.png)
+    ![](./media/image28.png)
 
 8.  Select **Open in browser** to launch the app in a new browser tab.
 
-> ![](./media/image29.png)
->
-> ![A screenshot of a chat AI-generated content may be
-> incorrect.](./media/image30.png)
+    ![](./media/image29.png)
+
+    ![A screenshot of a chat AI-generated content may be
+    incorrect.](./media/image30.png)
 
 9.  Type the following prompt in the textbox and select **Send** and
     give the app a few seconds to reply with a message from Azure
     OpenAI.
 
-> +++What is Azure?+++
->
-> ![](./media/image31.png)
+    +++What is Azure?+++
+
+    ![](./media/image31.png)
 
 The application uses DefaultAzureCredential, which automatically uses
 your Azure CLI signed-in user for token authentication. Later in this
@@ -401,101 +305,82 @@ and set up a service connection to Azure OpenAI using managed identity.
     running command. Now, deploy your app to Azure App Service using the
     Azure CLI command az webapp up. This command creates a new web app
     and deploys your code to it:
+    ```
+    az webapp up \
+    --resource-group $RESOURCE_GROUP \
+    --location $LOCATION \
+    --name $APPSERVICE_NAME \
+    --plan $APPSERVICE_NAME \
+    --sku B1 \
+    --os-type Linux \
+    --track-status false
+    ```
+    ![](./media/image32.png)
 
-> \`\`\`
->
-> az webapp up \\
->
-> --resource-group $RESOURCE_GROUP \\
->
-> --location $LOCATION \\
->
-> --name $APPSERVICE_NAME \\
->
-> --plan $APPSERVICE_NAME \\
->
-> --sku B1 \\
->
-> --os-type Linux \\
->
-> --track-status false
->
-> \`\`\`
->
-> ![](./media/image32.png)
->
-> This command might take a few minutes to complete. It creates a new
-> web app in the same resource group as your OpenAI resource.
->
-> **Note:** You can safely ignore any errors(such as Zip Deployment
-> failed) that are not related to App Service creation. If a timeout
-> error occurs, simply re-run the command.
+    This command might take a few minutes to complete. It creates a new
+    web app in the same resource group as your OpenAI resource.
+
+    **Note:** You can safely ignore any errors(such as Zip Deployment
+    failed) that are not related to App Service creation. If a timeout
+    error occurs, simply re-run the command.
 
 2.  After the app is deployed, create a service connection between your
     web app and the Azure OpenAI resource using managed identity:
+    ```
+    az webapp connection create cognitiveservices \
+    --resource-group $RESOURCE_GROUP \
+    --name $APPSERVICE_NAME \
+    --target-resource-group $RESOURCE_GROUP \
+    --account $OPENAI_SERVICE_NAME
+    --connection azure-openai \
+    --system-identity
+    ```
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image33.png)
 
-> \`\`\`
->
-> az webapp connection create cognitiveservices \\
->
-> --resource-group $RESOURCE_GROUP \\
->
-> --name $APPSERVICE_NAME \\
->
-> --target-resource-group $RESOURCE_GROUP \\
->
-> --account $OPENAI_SERVICE_NAME
->
-> --connection azure-openai \\
->
-> --system-identity
->
-> \`\`\`
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image33.png)
->
-> This command creates a connection between your web app and the Azure
-> OpenAI resource by:
+    This command creates a connection between your web app and the Azure
+    OpenAI resource by:
 
-- Generating a system-assigned managed identity for the web app.
+        - Generating a system-assigned managed identity for the web app.
 
-- Adding the Cognitive Services OpenAI Contributor role to the managed
-  identity for the Azure OpenAI resource.
+        - Adding the Cognitive Services OpenAI Contributor role to the managed
+        identity for the Azure OpenAI resource.
 
-- Adding the AZURE_OPENAI_ENDPOINT app setting to your web app.
+        - Adding the AZURE_OPENAI_ENDPOINT app setting to your web app.
 
-> Your app is now deployed and connected to Azure OpenAI with a managed
-> identity.
+    Your app is now deployed and connected to Azure OpenAI with a managed
+    identity.
 
 3.  Navigate to the **Azure portal** and sign in to your account.
 
-> +++https://portal.azure.com/+++
+    +++https://portal.azure.com/+++
 
 4.  Navigate to **Resource Groups**, open your resource group that is
     **ResourceGroup1**, and select your app that is
     **nueralNest-xy@lab.labinstanceid().**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image34.png)![A screenshot of a computer
-> AI-generated content may be incorrect.](./media/image35.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image34.png)
+
+    ![A screenshot of a computer
+    AI-generated content may be incorrect.](./media/image35.png)
 
 5.  On the Overview page of your app, click the **URL** to open the
     deployed web app in a new browser window.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image36.png)
->
-> ![A screenshot of a chat AI-generated content may be
-> incorrect.](./media/image37.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image36.png)
+
+    ![A screenshot of a chat AI-generated content may be
+    incorrect.](./media/image37.png)
 
 6.  Type the following prompt in the textbox and select **Send**, and
     give the app a few seconds to reply with a message from Azure
     OpenAI.
 
-> +++What is RAG in Azure?+++
->
-> ![](./media/image38.png)
+    +++What is RAG in Azure?+++
+
+    ![](./media/image38.png)
 
 ## Summary:
 
@@ -506,6 +391,8 @@ tested locally in GitHub Codespaces using DefaultAzureCredential, then
 deployed to Azure App Service with managed identity for secure access.
 Finally, the chatbot is validated through its public URL, streaming
 real-time AI responses.
+
+===
 
 # Lab 7 - Build a retrieval augmented generation (RAG) application using Azure OpenAI (text-embedding model) and Azure AI Search and deploy to Azure App Service
 
@@ -588,27 +475,27 @@ preinstalled tools.
 
 2.  Click on **Fork** to fork the repo.
 
-![](./media/image41.png)
+    ![](./media/image41.png)
 
 3.  Click on **Create fork**.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image42.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image42.png)
 
 4.  Click on **Code** \> **Codespaces** \> **Create codespace on main**
     to open a new codespace.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image43.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image43.png)
 
 5.  Wait for the codespace environment to set up. It takes a few minutes
     to set up completely.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image44.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image44.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image45.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image45.png)
 
 ## Task 2: Deploy the given architecture
 
@@ -617,79 +504,77 @@ your Azure account.
 
 1.  In the terminal, log into your Azure using Azure Developer CLI:
 
-+++azd auth login+++
+    +++azd auth login+++
 
-![](./media/image46.png)
+    ![](./media/image46.png)
 
 2.  Copy the code and then press the **Enter** key, and it will open a
     new browser window where you need to enter the given code and then
     click the **Next** button.
 
-![A screenshot of a computer error AI-generated content may be
-incorrect.](./media/image47.png)
+    ![A screenshot of a computer error AI-generated content may be
+    incorrect.](./media/image47.png)
 
 3.  Sign-in to your **Azure account** using the following credentials
     and then click on the **Continue** button.
 
-- Username: <+++@lab.CloudPortalCredential(User1).Username>+++
+    - Username: +++@lab.CloudPortalCredential(User1).Username+++
 
-- TAP Token:
-  +++[@lab.CloudPortalCredential](mailto:+++@lab.CloudPortalCredential)(User1).AccessToken+++
+    - TAP Token: +++@lab.CloudPortalCredential(User1).AccessToken+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image48.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image48.png)
 
-![A screenshot of a login box AI-generated content may be
-incorrect.](./media/image49.png)
+    ![A screenshot of a login box AI-generated content may be
+    incorrect.](./media/image49.png)
 
-![A screenshot of a computer error AI-generated content may be
-incorrect.](./media/image50.png)
+    ![A screenshot of a computer error AI-generated content may be
+    incorrect.](./media/image50.png)
 
-Now your account is successfully connected with the Codespace terminal.
+    Now your account is successfully connected with the Codespace terminal.
 
-![A close-up of a computer AI-generated content may be
-incorrect.](./media/image51.png)
+    ![A close-up of a computer AI-generated content may be
+    incorrect.](./media/image51.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image52.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image52.png)
 
 4.  In the terminal, write the following command to provision the Azure
     resources with the AZD template:
 
-+++azd provision+++
+    +++azd provision+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image53.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image53.png)
 
 5.  When prompted, enter the following details:
 
-- **Enter a new environment Name:** +++blazorenv
-  [*@lab.LabInstance.Id*](mailto:+++ragpgpy@lab.LabInstance.Id)+++
+    - **Enter a new environment Name:** +++blazorenv@lab.LabInstance.Id+++
 
-- **Select Azure Subscription to use:** Select the subscription
+    - **Select Azure Subscription to use:** Select the subscription
 
-- **Pick a resource group to use:** Select **ResourceGroup1**
+    - **Pick a resource group to use:** Select **ResourceGroup1**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image54.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image54.png)
 
 6.  Wait for the deployment to complete; it will take 5-10 mins. This
     process will:
 
-- Create all required Azure resources.
+    - Create all required Azure resources.
 
-- Deploy the application to Azure App Service.
+    - Deploy the application to Azure App Service.
 
-- Configure secure service-to-service authentication using managed
-  identities.
+    - Configure secure service-to-service authentication using managed
+    identities.
 
-- Set up the necessary role assignments for secure access between
-  services.
+    - Set up the necessary role assignments for secure access between
+    services.
 
-After successful deployment, you'll see a URL for your deployed
-application.
+    After successful deployment, you'll see a URL for your deployed
+    application.
 
-![](./media/image55.png)
+    ![](./media/image55.png)
 
 ## Task 3: Upload documents and create a search index
 
@@ -699,135 +584,148 @@ and create a search index that the application will use:
 1.  Open the given URL using **Ctrl+Click** to view all the created
     resources.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image56.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image56.png)
 
 2.  Select the **storage account** that was created by the deployment.
 
-![](./media/image57.png)
+    ![](./media/image57.png)
 
 3.  Select **Containers** under Data Storage from the left navigation
     menu and open the **documents** container. The document container is
     empty, so now you upload documents.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image58.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image58.png)
 
 4.  Click on the **Upload** button.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image59.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image59.png)
 
 5.  Click on **Browse for files**, navigate to
     **C:\LabFiles\Build-a-RAG-application-using-Azure-OpenAI-and-Azure-AI-Search-and-deploy-to-Azure-App-Service**,
-    select all five documents, and then click the **Open** button.![A
-    screenshot of a computer AI-generated content may be
+    select all five documents, and then click the **Open** button.
+    
+    ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image60.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image61.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image61.png)
 
 6.  Then click the **Upload**.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image62.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image62.png)
 
-You can view these files in the document container.
+    You can view these files in the document container.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image63.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image63.png)
 
 7.  Navigate back to the ResourceGroup1 and select the **Azure AI Search
     service**.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image64.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image64.png)
 
 8.  Copy the URI and save it in the Notepad for future use.  
+    
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image65.png)
 
 9.  Select **Import data(new)** to start the process of creating a
     search index from the overview page.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image66.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image66.png)
 
 10. Select **Azure Blob Storage** as the Data Source.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image67.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image67.png)
 
 11. Select **RAG**.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image68.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image68.png)
 
 12. Choose your **storage account** and the **documents** container.
     Ensure that **Authenticate using managed identity** is selected, and
     then click **Next**.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image69.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image69.png)
 
 13. Choose your **Azure OpenAI service** and
     select **text-embedding-ada-002** as the embedding model. The AZD
-    template has already deployed this model. Then, select **System
-    assigned identity** for authentication and check the acknowledgement
+    template has already deployed this model. Then, select **System assigned identity** for authentication and check the acknowledgement
     checkbox for additional costs. Click on the **Next** button.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image70.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image70.png)
 
 14. In the **Vectorize and enrich your images** step, keep the default
     settings as it is and select **Next**.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image71.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image71.png)
 
 15. Ensure **Enable semantic ranker** is selected and then click Next.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image72.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image72.png)
 
 16. Copy the **Objects name prefix** value in Notepad for future use, as
     it is your search index name. Now, click **Create** to start the
     indexing process.
 
-![](./media/image73.png)![](./media/image74.png)![](./media/image75.png)![A
-screenshot of a computer AI-generated content may be
-incorrect.](./media/image76.png)
+    ![](./media/image73.png)
+
+    ![](./media/image74.png)
+
+    ![](./media/image75.png)![A
+    screenshot of a computer AI-generated content may be
+    incorrect.](./media/image76.png)
 
 17. Wait for the indexing process to complete. This might take a few
     minutes, depending on the size and number of your documents. Once
     the process is complete, click **Close**.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image77.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image77.png)
 
 18. Again, open the resource group and select Azure OpenAI service.
 
-![](./media/image73.png)![A screenshot of a computer AI-generated
-content may be incorrect.](./media/image78.png)
+    ![](./media/image73.png)
+
+    ![A screenshot of a computer AI-generated
+    content may be incorrect.](./media/image78.png)
 
 19. Select the **Endpoint** and then copy the value of the endpoint in
     Notepad for future use.
 
-![](./media/image79.png)![A screenshot of a computer AI-generated
-content may be incorrect.](./media/image80.png)![A screenshot of a
-computer AI-generated content may be incorrect.](./media/image81.png)
+    ![](./media/image79.png)
+
+    ![A screenshot of a computer AI-generated
+    content may be incorrect.](./media/image80.png)
+
+    ![A screenshot of a
+    computer AI-generated content may be incorrect.](./media/image81.png)
 
 20. Navigate to Codespace terminal, set the search index name as an AZD
     environment variable:
 
-+++azd env set SEARCH_INDEX_NAME \<your-search-index-name\>+++
+    +++azd env set SEARCH_INDEX_NAME \<your-search-index-name\>+++
 
-**Note:** Replace \<your-search-index-name\>with the index name you
-copied previously. AZD uses this variable in subsequent deployments to
-set the App Service app setting.
+    **Note:** Replace \<your-search-index-name\>with the index name you
+    copied previously. AZD uses this variable in subsequent deployments to
+    set the App Service app setting.
 
-![](./media/image82.png)![A screenshot of a computer AI-generated
-content may be incorrect.](./media/image83.png)
+    ![](./media/image82.png)
+    
+    ![A screenshot of a computer AI-generated
+    content may be incorrect.](./media/image83.png)
 
 ## Task 4: Test the application and deploy
 
@@ -838,83 +736,107 @@ application is functioning properly, proceed with the deployment.
 1.  In the Codespace terminal, get the AZD environment values using the
     following command.
 
-+++azd env get-values+++
+    +++azd env get-values+++
 
-![](./media/image84.png)![](./media/image85.png)![](./media/image86.png)![](./media/image87.png)
+    ![](./media/image84.png)
+    
+    ![](./media/image85.png)
+    
+    ![](./media/image86.png)
+    
+    ![](./media/image87.png)
 
 2.  Open **appsettings.Development.json.** Using the terminal output,
     update the values of:
 
-- "OpenAIEndpoint": "\<value-of-OPENAI_ENDPOINT\>"
+    - "OpenAIEndpoint": "\<value-of-OPENAI_ENDPOINT\>"
 
-- "SearchServiceUrl": "\<value-of-SEARCH_SERVICE_ENDPOINT\>",
+    - "SearchServiceUrl": "\<value-of-SEARCH_SERVICE_ENDPOINT\>",
 
-- "SearchIndexName": "\<value-of-SEARCH_INDEX_NAME\>",
+    - "SearchIndexName": "\<value-of-SEARCH_INDEX_NAME\>",
 
-![](./media/image88.png)![](./media/image89.png)![](./media/image90.png)![A
-screenshot of a computer AI-generated content may be
-incorrect.](./media/image91.png)
+    ![](./media/image88.png)
+
+    ![](./media/image89.png)
+
+    ![](./media/image90.png)![A
+    screenshot of a computer AI-generated content may be
+    incorrect.](./media/image91.png)
 
 3.  Sign in to Azure with the Azure CLI:
 
-+++az login+++
+    +++az login+++
 
-![](./media/image92.png)![](./media/image93.png)![](./media/image94.png)![](./media/image95.png)![](./media/image96.png)![A
-screenshot of a computer program AI-generated content may be
-incorrect.](./media/image97.png)
+    ![](./media/image92.png)
+    
+    ![](./media/image93.png)
+    
+    ![](./media/image94.png)
+    
+    ![](./media/image95.png)
+    
+    ![](./media/image96.png)![A
+    screenshot of a computer program AI-generated content may be
+    incorrect.](./media/image97.png)
 
 4.  Open the given **URL** and enter the authentication code, and then
-    click on the **Next** button.![](./media/image98.png)
+    click on the **Next** button.
+    
+    ![](./media/image98.png)
 
 5.  Select your Azure account and then click on **Continue**.
 
-![](./media/image99.png)![](./media/image100.png)![A screenshot of a
-computer AI-generated content may be incorrect.](./media/image101.png)
+    ![](./media/image99.png)
+    
+    ![](./media/image100.png)
+    
+    ![A screenshot of a
+    computer AI-generated content may be incorrect.](./media/image101.png)
 
-![A screenshot of a computer error AI-generated content may be
-incorrect.](./media/image102.png)
+    ![A screenshot of a computer error AI-generated content may be
+    incorrect.](./media/image102.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image103.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image103.png)
 
 6.  Press +++**1**+++ to select subscription.
 
-![](./media/image104.png)
+    ![](./media/image104.png)
 
 7.  Run the application locally:
 
-+++dotnet run+++
+    +++dotnet run+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image105.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image105.png)
 
 8.  When you see that **your application running on port 5017 is
     available**, select **Open in Browser.**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image106.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image106.png)
 
-It will open the app in a browser.
+    It will open the app in a browser.
 
-![](./media/image107.png)
+    ![](./media/image107.png)
 
 9.  Enter the following prompt. If you get a response, your application
     is connecting successfully to the Azure OpenAI resource.
 
-+++What does Contoso do with my personal information?+++
+    +++What does Contoso do with my personal information?+++
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image108.png)
+    ![A screenshot of a chat AI-generated content may be
+    incorrect.](./media/image108.png)
 
 10. Press **Ctrl+C** to terminate the running command. Next, deploy the
     application using the following command.
 
-+++azd up+++
+    +++azd up+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image109.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image109.png)
 
-**Note:** It will take 5-10 mins to complete the deployment.
+    **Note:** It will take 5-10 mins to complete the deployment.
 
 ## Task 5: Test the deployed RAG application
 
@@ -925,38 +847,40 @@ RAG functionality:
     the prompt appears asking, 'Do you want Code to open the external
     website?', click **Open**.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image110.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image110.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image111.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image111.png)
 
-You see a chat interface where you can enter questions about the content
-of your uploaded documents.
+    You see a chat interface where you can enter questions about the content
+    of your uploaded documents.
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image112.png)
+    ![A screenshot of a chat AI-generated content may be
+    incorrect.](./media/image112.png)
 
 2.  Ask the following questions:
 
-+++**How does Contoso use my personal data?**+++
+    +++**How does Contoso use my personal data?**+++
 
-+++**How do you file a warranty claim?**+++
+    +++**How do you file a warranty claim?**+++
 
-Observe how the responses include citations that reference the source
-documents. These citations help users verify the accuracy of the
-information and find more details in the source material.
+    Observe how the responses include citations that reference the source
+    documents. These citations help users verify the accuracy of the
+    information and find more details in the source material.
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image113.png)
+    ![A screenshot of a chat AI-generated content may be
+    incorrect.](./media/image113.png)
 
-The pop-up appears when you click on the blue circles labelled 1 or 2,
-positioned at the end of each line.![A screenshot of a chat AI-generated
-content may be incorrect.](./media/image114.png)
+    The pop-up appears when you click on the blue circles labelled 1 or 2,
+    positioned at the end of each line.
 
-![](./media/image115.png)
+    ![A screenshot of a chat AI-generated
+    content may be incorrect.](./media/image114.png)
 
-![](./media/image116.png)
+    ![](./media/image115.png)
+
+    ![](./media/image116.png)
 
 ## Summary
 
@@ -967,6 +891,8 @@ contextual Q&A with citations. The application is tested locally in
 GitHub Codespaces using managed identity for secure access. Finally,
 it’s deployed to Azure App Service and validated through a live chat
 interface powered by Azure AI.
+
+===
 
 # Lab 8 - Build a web-based chat application with PostgreSQL Flexible Server and deploy to Azure Container Apps
 
@@ -1015,214 +941,215 @@ Database for PostgreSQL and azure-container-apps, ai-azd-templates.
 
 2.  Sign in using your Azure subscription account credentials.
 
-- Username: +++@lab.CloudPortalCredential(User1).Username+++
+    - Username: +++@lab.CloudPortalCredential(User1).Username+++
 
-- TAP Token: +++@lab.CloudPortalCredential(User1).AccessToken+++
+    - TAP Token: +++@lab.CloudPortalCredential(User1).AccessToken+++
 
-![](./media/image2.png)
+    ![](./media/image2.png)
 
-![](./media/image3.png)
+    ![](./media/image3.png)
 
-If you get the following prompt, then click on **Yes**.
+    If you get the following prompt, then click on **Yes**.
 
-![](./media/image4.png)
+    ![](./media/image4.png)
 
 3.  Click on the **Subscription** tile.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image118.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image118.png)
 
-4.  Click on the **subscription name**.![A screenshot of a chat
+4.  Click on the **subscription name**.
+
+    ![A screenshot of a chat
     AI-generated content may be incorrect.](./media/image119.png)
 
 5.  Click on Resource provider from the left navigation menu, type
     +++**Microsoft.AlertsManagement**+++ and press **enter**. Select it
     and then click on **Register**.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image120.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image121.png)
->
-> Similarly, register the following Resource providers:
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image120.png)
 
-- +++**Microsoft.DBforPostgreSQL+++**
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image121.png)
 
-- **+++Microsoft.Search+++**
+    Similarly, register the following Resource providers:
 
-- **+++Microsoft.Web+++**
+    - +++**Microsoft.DBforPostgreSQL+++**
 
-- **+++Microsoft.ManagedIdentity+++**
+    - **+++Microsoft.Search+++**
 
-- **+++Microsoft.Management+++**
+    - **+++Microsoft.Web+++**
 
-- **+++Microsoft.operationalinsights+++**
+    - **+++Microsoft.ManagedIdentity+++**
+
+    - **+++Microsoft.Management+++**
+
+    - **+++Microsoft.operationalinsights+++**
 
 ## Task 2: Open development environment
 
 1.  Open a new web browser window and navigate to the following GitHub
-    repository:
+    repository: +++https://github.com/technofocus-pte/ragpostgresopenaipython2+++ and sign-in using your GitHub account credentials.
 
-> +++
-> [https://github.com/technofocus-pte/ragpostgresopenaipython2](https://github.com/technofocus-pte/ragpostgresopenaipython2+++)+++
-> and sign-in using your GitHub account credentials.
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image122.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image122.png)
 
 2.  Click on the **fork** to fork the repo.
 
-> ![](./media/image123.png)
+    ![](./media/image123.png)
 
 3.  Click on the **Create fork** button**.**
 
-> ![](./media/image124.png)
+    ![](./media/image124.png)
 
 4.  Click on **Code** \> **Codespaces** \> **plus icon(+)** to open a
     new codespace.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image125.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image125.png)
 
 5.  Wait for the codespace environment to set up. It takes a few minutes
-    to set up completely.![A screenshot of a computer Description
+    to set up completely.
+    
+    ![A screenshot of a computer Description
     automatically generated](./media/image126.png)
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image127.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image127.png)
 
 ## Task 3: Provision Services and deploy application to Azure
 
 1.  Sign in to Azure with the Azure Developer CLI. Run the following
     command in the codespace’s terminal:
 
-+++azd auth login+++
+    +++azd auth login+++
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image128.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image128.png)
 
-**Note:** When you paste a command in the codespace’s terminal, a pop-up
-will appear stating “See text and images copied to the clipboard”. Click
-**Allow** to access the clipboard.
+    **Note:** When you paste a command in the codespace’s terminal, a pop-up
+    will appear stating “See text and images copied to the clipboard”. Click
+    **Allow** to access the clipboard.
 
 2.  Copy the code and press **Enter**.
 
-> ![](./media/image129.png)
+    ![](./media/image129.png)
 
 3.  A new window will open. Enter the verification code, then click
     **Next** to continue.
 
-> ![](./media/image130.png)
+    ![](./media/image130.png)
 
 4.  Select your Azure account.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image131.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image131.png)
 
-5.  Click on **Continue** button. ![A screenshot of a computer error
+5.  Click on **Continue** button. 
+
+    ![A screenshot of a computer error
     AI-generated content may be incorrect.](./media/image132.png)
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image133.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image133.png)
 
 6.  Switch back to the GitHub Codespace tab.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image134.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image134.png)
 
 7.  To create an environment for Azure resources, run the following
     Azure Developer CLI command.
 
-+++azd env new+++
+    +++azd env new+++
 
-It asks you to enter the environment name. So, enter the following name
-and then press **Enter**.
+    It asks you to enter the environment name. So, enter the following name
+    and then press **Enter**.
 
-**New Environment Name:** +++ragpgpyXXXXX++++ (XXXXX can be a unique
-number)
+    **New Environment Name:** +++ragpgpyXXXXX++++ (XXXXX can be a unique
+    number)
 
-**Note:** When creating an environment, ensure that the name consists of
-lowercase letters.
+    **Note:** When creating an environment, ensure that the name consists of
+    lowercase letters.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image135.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image135.png)
 
 8.  Run the following Azure Developer CLI command to provision the Azure
     resources.
 
-+++azd env set AZURE_RESOURCE_GROUP ResourceGroup1+++
+    +++azd env set AZURE_RESOURCE_GROUP ResourceGroup1+++
 
 9.  Run the following Azure Developer CLI command to provision the Azure
     resources and deploy the code.
 
-+++azd up+++
+    +++azd up+++
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image136.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image136.png)
 
 10. When prompted, select a **subscription** to create the resources and
     select the region closest to your location; in this lab, we have
     chosen the
     **@lab.CloudResourceGroup(ResourceGroup1).Location** region.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image137.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image137.png)
 
 11. When prompted, **enter a value for the ‘openAILocation’
     infrastructure parameter,** select the region closest to your
     location; in this lab, we have chosen the **North Central US**
     region
 
-> ![](./media/image138.png)
+    ![](./media/image138.png)
 
 12. Wait for the deployment to complete; it might take around 19-20
     minutes.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image139.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image139.png)
 
 13. While the deployment is in progress, you can open the link provided
     to begin verifying the deployed resources. This link directs you to
     the deployment page in the Azure Portal.
 
-> ![](./media/image140.png)
+    ![](./media/image140.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image141.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image141.png)
 
 14. Navigate back to Codesapce. After completing the deployment
     successfully. Click on the deployed web app endpoint link. Then
     click on **Open** to open the web-app.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image142.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image142.png)
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image143.png)
+    ![A screenshot of a chat AI-generated content may be
+    incorrect.](./media/image143.png)
 
 ## Task 4: Use a chat app to get answers from files
 
 1.  In the **RAG on database |OpenAI+PoastgreSQL** web app page, **click
     on “Best shoe for hiking?”** button and observe the output
 
-![](./media/image144.png)
+    ![](./media/image144.png)
 
-![](./media/image145.png)
+    ![](./media/image145.png)
 
 2.  Click on the **clear chat.**
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image146.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image146.png)
 
 3.  In the **RAG on database |OpenAI+PoastgreSQL** web app page, click
     on **Climbing gear cheaper than $30** button and observe the output.
 
-![A screenshot of a chat Description automatically
-generated](./media/image147.png)
+    ![A screenshot of a chat Description automatically
+    generated](./media/image147.png)
 
-![A screenshot of a computer Description automatically
-generated](./media/image148.png)
+    ![A screenshot of a computer Description automatically
+    generated](./media/image148.png)
 
 4.  Click on the **clear chat.**
 
@@ -1231,45 +1158,45 @@ generated](./media/image148.png)
 1.  Navigate to the Azure portal and on the Home page, click on
     **Resource Groups**.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image149.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image149.png)
 
 2.  Click on your resource group name.
 
-> ![](./media/image150.png)
+    ![](./media/image150.png)
 
 3.  Make sure the below resource got deployed successfully
 
-- Container App
+    - Container App
 
-- Application Insights
+    - Application Insights
 
-- Container Apps Environment
+    - Container Apps Environment
 
-- Log Analytics workspace
+    - Log Analytics workspace
 
-- Azure OpenAI
+    - Azure OpenAI
 
-- Azure Database for PostgreSQL flexible server
+    - Azure Database for PostgreSQL flexible server
 
-- Container registry
+    - Container registry
 
-![](./media/image151.png)
+    ![](./media/image151.png)
 
 4.  Click on **Azure OpenAI** resource name.
 
-> ![](./media/image152.png)
+    ![](./media/image152.png)
 
 5.  In the left navigation menu, under **Overview,** click **Go to
     Foundry portal**.
 
-> ![](./media/image153.png)
+    ![](./media/image153.png)
 
 6.  Click on **Deployments** from the left navigation menu and make sure
     **gpt-4o-mini** and **text-embedding-3-large** should be deployed
     successfully.
 
-> ![](./media/image154.png)
+    ![](./media/image154.png)
 
 ## Task 6: Clean up all the resources
 
@@ -1278,21 +1205,21 @@ In this task, you will clean up all the created resources.
 1.  Navigate back to the codespace terminal and run the following
     command:
 
-> +++azd down --purge++
->
-> ![](./media/image155.png)
+    +++azd down --purge++
+
+    ![](./media/image155.png)
 
 2.  When asked if you are sure you want to continue, enter +++**Y+++.**
 
-> ![](./media/image156.png)
->
-> ![](./media/image157.png)
+    ![](./media/image156.png)
+
+    ![](./media/image157.png)
 
 3.  If you get a prompt like ”Would you like to permanently delete these
     resources instead, allowing their names to be reused?”, then enter
     **Y**.
 
-> ![](./media/image158.png)
+    ![](./media/image158.png)
 
 ## Summary
 
