@@ -44,9 +44,6 @@ create an On-prem Database in Azure SQL Virtual Machine.
     computer AI-generated content may be
     incorrect.](./media/image3.png)
 
-    ![A screenshot of a computer
-    AI-generated content may be incorrect.](./media/image4.png)
-
 2.  Search for and select +++**Azure SQL**+++.
 
     ![A screenshot of a computer AI-generated content may be
