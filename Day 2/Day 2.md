@@ -34,15 +34,15 @@ create an On-prem Database in Azure SQL Virtual Machine.
 
     - Username: +++@lab.CloudPortalCredential(User1).Username+++
 
-    - Password: +++@lab.CloudPortalCredential(User1).Password+++
+    - TAP Token - +++@lab.CloudPortalCredential(User1).AccessToken+++
 
-    ![](./media/image1.png)
+    ![](./media/image165.png)
 
-    ![](./media/image2.png)
+    ![](./media/image166.png)
 
     ![A screenshot of a
     computer AI-generated content may be
-    incorrect.](./media/image3.png)
+    incorrect.](./media/image167.png)
 
 2.  Search for and select +++**Azure SQL**+++.
 
@@ -324,7 +324,7 @@ will migrate your on-prem database.
 
 1.  Close the VM and in a new window open the Select SQL Deployment
     option page at
-    +++https://portal.azure.com/#create/Microsoft.AzureSQL +++ and
+    +++https://portal.azure.com/#create/Microsoft.AzureSQL+++ and
     select **Show options**.
 
     ![A screenshot of a computer AI-generated content may be
@@ -826,13 +826,13 @@ on-premises environment for Terra Firm Laboratories.
 
     - Username: +++@lab.CloudPortalCredential(User1).Username+++
 
-    - Password: +++@lab.CloudPortalCredential(User1).Password+++
+    - TAP Token - +++@lab.CloudPortalCredential(User1).AccessToken+++
 
-    ![](./media/image104.png)
+    ![](./media/image168.png)
 
-    ![](./media/image105.png)
+    ![](./media/image169.png)
 
-    ![](./media/image3.png)
+    ![](./media/image170.png)
 
     ![](./media/image106.png)
 
@@ -842,10 +842,12 @@ on-premises environment for Terra Firm Laboratories.
     +++https://github.com/technofocus-pte/MigrateLinuxworkloads/tree/main/resources/deployment+++
 
 3.  Select **Deploy to Azure**. This will open a new browser tab to the
-    Azure Portal for custom deployments.![The GitHub page with Deploy to
+    Azure Portal for custom deployments.
+
+    ![The GitHub page with Deploy to
     Azure button highlighted.](./media/image107.png)
 
-4.  Fill in the required ARM template parameters.
+5.  Fill in the required ARM template parameters.
 
     - **Subscription:** Use the default one
 
@@ -863,11 +865,11 @@ on-premises environment for Terra Firm Laboratories.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image108.png)
 
-5.  Click on the **Create** button to start deployment.
+6.  Click on the **Create** button to start deployment.
 
     ![](./media/image109.png)
 
-6.  The deployment is now underway. On average, this process can take
+7.  The deployment is now underway. On average, this process can take
     10-20 minutes to complete.
 
     ![A screenshot of a computer AI-generated content may be
@@ -879,7 +881,7 @@ on-premises environment for Terra Firm Laboratories.
     try the ARM template again. Or review the failures and adjust for errors
     as appropriate.
 
-7.  Once the ARM template is deployed successfully, the status will
+8.  Once the ARM template is deployed successfully, the status will
     change to complete. Click on **Go to resource group** to open the
     resource group.
 
@@ -1021,7 +1023,7 @@ ARM Template deployment.
 
 1.  Navigate back to Azure Portal, open the ResourceGroup1, then select
     the **On-premises APP VM** named similar
-    to terrafirm@lab.LabInstance.Id-onprem-app-vm*.*
+    to **terrafirm@lab.LabInstance.Id-onprem-app-vm**.
 
     ![](./media/image130.png)
 
@@ -1287,7 +1289,7 @@ for PostgreSQL - flexible server.
         ![A screenshot of a computer AI-generated content may be
         incorrect.](./media/image158.png)
 
-    2.  **Port:** 5432
+    2.  **Port:** +++5432+++
 
     3.  **Server admin login name:** rootuser(the VM has been setup with an
         admin user called rootuser)
