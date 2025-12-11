@@ -693,15 +693,11 @@ and create a search index that the application will use:
 
 19. Again, open the resource group and select Azure OpenAI service.
 
-    ![](./media/image73.png)
-
     ![A screenshot of a computer AI-generated
     content may be incorrect.](./media/image78.png)
 
 20. Select the **Endpoint** and then copy the value of the endpoint in
     Notepad for future use.
-
-    ![](./media/image79.png)
 
     ![A screenshot of a computer AI-generated
     content may be incorrect.](./media/image80.png)
@@ -718,8 +714,6 @@ and create a search index that the application will use:
     copied previously. AZD uses this variable in subsequent deployments to
     set the App Service app setting.
 
-    ![](./media/image82.png)
-    
     ![A screenshot of a computer AI-generated
     content may be incorrect.](./media/image83.png)
 
@@ -733,12 +727,6 @@ application is functioning properly, proceed with the deployment.
     following command.
 
     +++azd env get-values+++
-
-    ![](./media/image84.png)
-    
-    ![](./media/image85.png)
-    
-    ![](./media/image86.png)
     
     ![](./media/image87.png)
 
@@ -750,28 +738,13 @@ application is functioning properly, proceed with the deployment.
     - "SearchServiceUrl": "\<value-of-SEARCH_SERVICE_ENDPOINT\>",
 
     - "SearchIndexName": "\<value-of-SEARCH_INDEX_NAME\>",
-
-    ![](./media/image88.png)
-
-    ![](./media/image89.png)
-
-    ![](./media/image90.png)![A
-    screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image91.png)
 
 3.  Sign in to Azure with the Azure CLI:
 
     +++az login+++
-
-    ![](./media/image92.png)
-    
-    ![](./media/image93.png)
-    
-    ![](./media/image94.png)
-    
-    ![](./media/image95.png)
-    
-    ![](./media/image96.png)![A
+    ![A
     screenshot of a computer program AI-generated content may be
     incorrect.](./media/image97.png)
 
@@ -782,10 +755,6 @@ application is functioning properly, proceed with the deployment.
 
 5.  Select your Azure account and then click on **Continue**.
 
-    ![](./media/image99.png)
-    
-    ![](./media/image100.png)
-    
     ![A screenshot of a
     computer AI-generated content may be incorrect.](./media/image101.png)
 
@@ -1062,8 +1031,7 @@ Database for PostgreSQL and azure-container-apps, ai-azd-templates.
     It asks you to enter the environment name. So, enter the following name
     and then press **Enter**.
 
-    **New Environment Name:** +++ragpgpyXXXXX++++ (XXXXX can be a unique
-    number)
+    **New Environment Name:** +++ragpgpy@lab.labinstanceid()+++ 
 
     **Note:** When creating an environment, ensure that the name consists of
     lowercase letters.
