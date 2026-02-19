@@ -1,5 +1,5 @@
 # Lab 01: Build a fitness app with GitHub Copilot agent mode
- test 
+
 In this lab, participants will set up a preconfigured development
 environment using GitHub Codespaces to build a full-stack OctoFit
 Tracker application. They will use GitHub Copilot in agent mode to
